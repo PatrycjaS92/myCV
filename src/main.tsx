@@ -6,6 +6,7 @@ interface Experience {
   description: string;
   startYear: number;
   endYear: number | string;
+  additionalText?: string;
 }
 
 interface Education {
@@ -23,11 +24,10 @@ interface DataCV {
   experience: Experience[];
   education: Education[];
   contactData: {
-    phone?: number | undefined;
+    phone: number;
     email: string;
-    country?: string | undefined;
-    city?: string | undefined;
-    addressDetails?: string | undefined;
+    country: string;
+    city: string;
   };
 }
 
@@ -41,11 +41,15 @@ const myDataCV: DataCV = {
       description: "Content Management Specialist",
       startYear: 2024,
       endYear: "currently",
+      additionalText:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     },
     {
       description: "Manual Tester",
       startYear: 2022,
       endYear: 2024,
+      additionalText:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint",
     },
   ],
   education: [
@@ -61,55 +65,55 @@ const myDataCV: DataCV = {
     email: "patrycja@email.com",
     country: "Poland",
     city: "Poznań",
-    addressDetails: "ulica 4/5",
   },
 };
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <main>
-      <header>
-        <h1>
-          {myDataCV.name} {myDataCV.lastName}
-        </h1>
-        <p>{myDataCV.position} </p>
-        <img src={myDataCV.photo}></img>
-      </header>
-
-      <section>
-        <aside>
+    <main className="cv-main">
+      <header className="cv-header">
+        <div className="cv-header-title">
+          <h1>
+            {myDataCV.name} {myDataCV.lastName}
+          </h1>
+          <h3>{myDataCV.position} </h3>
           <div>
-            <h2>Contact details:</h2>
-            <ul>
-              <li>{myDataCV.contactData.email}</li>
-              <li>{myDataCV.contactData.phone}</li>
-              <li>{myDataCV.contactData.addressDetails}</li>
-              <li>{myDataCV.contactData.city}</li>
-              <li>{myDataCV.contactData.country}</li>
+            <ul className="cv-contact-list">
+              <li>Email: {myDataCV.contactData.email}</li>
+              <li>Phone: {myDataCV.contactData.phone}</li>
+              <li>City: {myDataCV.contactData.city}</li>
+              <li>Country: {myDataCV.contactData.country}</li>
             </ul>
           </div>
-          <div>
-            <h2>Education:</h2>
+        </div>
+        <img className="cv-header-img" src={myDataCV.photo}></img>
+      </header>
+
+      <section className="cv-details-section">
+        <aside className="cv-details-education">
+          <h2>Education</h2>
+          <ul className="cv-other-lists">
             {myDataCV.education.map((el, index) => (
               <li key={index}>
-                <strong>
+                <h3>
                   {el.startYear} - {el.endYear}
-                </strong>
-                <p>{el.school}</p>
+                </h3>
+                <h4>{el.school}</h4>
                 <p>{el.fieldOfStudy}</p>
               </li>
             ))}
-          </div>
+          </ul>
         </aside>
-        <section>
-          <h2>Experience:</h2>
-          <ul>
+        <section className="cv-details-experience">
+          <h2>Experience</h2>
+          <ul className="cv-other-lists">
             {myDataCV.experience.map((el, index) => (
               <li key={index}>
-                <strong>
+                <h3>
                   {el.startYear} - {el.endYear}
-                </strong>
-                <p>{el.description}</p>
+                </h3>
+                <h4>{el.description}</h4>
+                <p>{el.additionalText}</p>
               </li>
             ))}
           </ul>
