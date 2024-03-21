@@ -1,0 +1,10 @@
+.cv-details-experience {
+  padding: 32px;
+  width: 70%;
+}
+
+@media screen and (max-width: 576px) {
+  .cv-details-experience {
+    width: 100%;
+  }
+}

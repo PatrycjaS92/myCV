@@ -1,0 +1,17 @@
+.cv-details-education {
+  padding: 32px;
+  text-align: right;
+  width: 30%;
+  background-color: var(--grey);
+  color: var(--white);
+}
+.cv-details-education h2 {
+  border-bottom: 2px solid var(--white);
+}
+
+@media screen and (max-width: 576px) {
+  .cv-details-education {
+    width: 100%;
+    text-align: left;
+  }
+}
